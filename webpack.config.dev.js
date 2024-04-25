@@ -10,4 +10,9 @@ module.exports = merge(common, {
     open: true,
     static: ['./'],
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.API_URL': JSON.stringify('http://localhost:3000')
+    })
+  ]
 });

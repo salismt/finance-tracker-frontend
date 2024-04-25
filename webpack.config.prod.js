@@ -22,5 +22,8 @@ module.exports = merge(common, {
         { from: 'site.webmanifest', to: 'site.webmanifest' },
       ],
     }),
+    new webpack.DefinePlugin({
+      'process.env.API_URL': JSON.stringify(process.env.API_URL || 'https://finance-tracker-backend-zbxuhg7gpq-as.a.run.app')
+    })
   ],
 });
