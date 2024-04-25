@@ -1,10 +1,4 @@
 import {
-  fetchCurrentBalance,
-  fetchTotalExpense,
-  fetchTotalIncome,
-  fetchBalanceHistory,
-  fetchCategoriesPercentage,
-  fetchLastTransactions,
   fetchDashboard
 } from './api.js';
 
