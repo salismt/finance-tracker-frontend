@@ -1,8 +1,9 @@
-// routes.js
+// app.js
 import { fetchCategories, fetchTransactions } from './api.js';
 import { onLoginSuccess, onLoginFailure,
   handleGoogleCallback, user, onLogout } from './auth.js';
 import { setupNavbar } from './nav.js';
+import { renderDashboard } from './dashboard.js';
 
 document.addEventListener('DOMContentLoaded', function() {
   setupNavbar(); // Initialize the navbar when the DOM is ready
@@ -16,8 +17,12 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function index() {
-  const app = document.getElementById('app');
-  app.innerHTML = '<h1>Home Page</h1><p>Welcome to our finance tracker.</p>';
+  if (user.isAuthenticated) {
+    renderDashboard();
+  } else {
+    const app = document.getElementById('app');
+    app.innerHTML = '<h1>Home Page</h1><p>Welcome to our finance tracker.</p>';
+  }
 }
 
 function categories() {

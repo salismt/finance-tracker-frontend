@@ -245,3 +245,35 @@ textarea {
   }
 }
 
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.dashboard-item {
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.amount-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  height: 100px; /* Adjust height as needed */
+}
+
+.full-width {
+  grid-column: span 3;
+}
+
+.chart {
+  height: 200px; /* Set the height for your chart container */
+}
+
+/* Add more CSS for styling your charts and transactions... */
+

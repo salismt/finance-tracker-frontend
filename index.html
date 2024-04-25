@@ -27,19 +27,20 @@
   <script src="js/auth.js" defer></script>
   <script src="js/nav.js" defer></script>
   <script src="js/api.js" defer></script>
-  <script src="js/routes.js" defer></script>
+  <script src="js/dashboard.js" defer></script> <!-- Add this line -->
+  <script src="js/app.js" defer></script>
+
 </head>
 
 <body>
 
-  <!-- Add your site or application content here -->
-  <nav id="nav"> <!-- Ensure this is dynamically updated -->
-    <a href="/">Home</a>
-    <a href="/categories">Categories</a>
-    <a href="/transactions">Transactions</a>
-    <a href="/login">Login</a>
-  </nav>
-  <div id="app">Loading...</div>
+<!-- Add this inside the <body> tag -->
+<main id="app" class="main-container">
+  <!-- Content will be injected by JavaScript -->
+</main>
+
+<!-- Add the dashboard.json script -->
+<script src="js/dashboard.js" defer></script>
 
 
 </body>
