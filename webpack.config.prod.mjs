@@ -1,10 +1,16 @@
-const { merge } = require('webpack-merge');
-const common = require('./webpack.common.js');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
-const webpack = require('webpack'); // Ensure webpack is required here
+import {merge} from "webpack-merge";
+import common from "./webpack.common.mjs";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import CopyPlugin from "copy-webpack-plugin";
+import webpack from "webpack"; // Ensure webpack is required here
 
-module.exports = merge(common, {
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+export default merge(common, {
   mode: 'production',
   plugins: [
     new HtmlWebpackPlugin({

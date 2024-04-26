@@ -9,8 +9,8 @@
   "license": "",
   "author": "",
   "scripts": {
-    "start": "webpack serve --open --config webpack.config.dev.js",
-    "build": "webpack --mode production --config webpack.config.prod.js",
+    "start": "webpack serve --open --config webpack.config.dev.mjs",
+    "build": "webpack --mode production --config webpack.config.prod.mjs",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
