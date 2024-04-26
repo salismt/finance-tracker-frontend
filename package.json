@@ -15,6 +15,9 @@
     "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
+    "@babel/cli": "^7.24.1",
+    "@babel/core": "^7.24.4",
+    "@babel/preset-env": "^7.24.4",
     "copy-webpack-plugin": "^11.0.0",
     "gh-pages": "^6.1.1",
     "html-webpack-plugin": "^5.6.0",
