@@ -1,6 +1,5 @@
 // nav.js
 import {user} from './auth.js';
-import page from 'page';
 import { TransactionModal } from './modal.js'; // Make sure to import the modal
 
 const transactionModal = new TransactionModal(); // Instantiate the modal

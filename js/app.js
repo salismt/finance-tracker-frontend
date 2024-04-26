@@ -4,7 +4,6 @@ import { onLoginSuccess, onLoginFailure, handleGoogleCallback, user, onLogout } 
 import { setupNavbar } from './nav.js';
 import { renderDashboard } from './dashboard.js';
 import { TransactionModal } from './modal.js';
-import page from 'page';
 
 
 

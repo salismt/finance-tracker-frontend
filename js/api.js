@@ -1,6 +1,5 @@
 // api.js
 import { user } from './auth.js';
-import axios from 'axios'; // Ensure axios is available for making HTTP requests
 
 // Import local data
 import localDashboardData from '../response-doc/dashboard.json';
