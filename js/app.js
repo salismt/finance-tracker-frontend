@@ -4,6 +4,8 @@ import { onLoginSuccess, onLoginFailure,
   handleGoogleCallback, user, onLogout } from './auth.js';
 import { setupNavbar } from './nav.js';
 import { renderDashboard } from './dashboard.js';
+import { TransactionModal } from './modal.js';
+
 
 document.addEventListener('DOMContentLoaded', function() {
   setupNavbar(); // Initialize the navbar when the DOM is ready
@@ -73,11 +75,19 @@ function profile() {
   const userProfile = user.fetchProfileData();
   const app = document.getElementById('app');
   app.innerHTML = `
-        <h1>User Profile</h1>
-        <p>Name: ${userProfile.name}</p>
-        <p>Email: ${userProfile.email}</p>
-        <button onclick="onLogout()">Logout</button>
-    `;
+    <div class="profile-container">
+      <h2 class="profile-title">Profile</h2>
+      <div class="profile-info">
+        <img src="${userProfile.getImageUrl()}" alt="Profile Image" class="profile-image">
+        <p class="profile-name">${userProfile.getName()}</p>
+        <p class="profile-email">${userProfile.getEmail()}</p>
+      </div>
+      <div class="balance-info">
+        <h3>Balance</h3>
+        <p class="balance-amount">$<span id="profile-balance">220</span></p>
+      </div>
+    </div>
+  `;
 }
 
 function googleAuthCallback(context) {

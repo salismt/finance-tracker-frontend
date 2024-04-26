@@ -19,7 +19,8 @@ export function fetchTransactions() {
 
 // Add the actual implementation for these API calls
 export function fetchDashboard() {
-  axios.get('/api/dashboard', { headers: {/* ... */} })
+  if (!user.isAuthenticated) throw new Error('User is not authenticated.');
+  axios.get(`${process.env.API_URL}/api/dashboard`, { headers: { 'Authorization': `Bearer ${user.token}` } })
     .then(response => {
       const data = response.data;
       document.getElementById('current-balance').textContent = data.balance.toFixed(2);

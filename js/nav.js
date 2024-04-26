@@ -1,6 +1,9 @@
 // nav.js
-import { user } from './auth.js';
+import {user} from './auth.js';
 import page from 'page';
+import { TransactionModal } from './modal.js'; // Make sure to import the modal
+
+const transactionModal = new TransactionModal(); // Instantiate the modal
 
 function updateNavbar() {
   const nav = document.getElementById('nav');
@@ -13,7 +16,10 @@ function updateNavbar() {
             <a href="/transactions">Transactions</a>
             <a href="/profile">Profile</a>
             <a href="#" onclick="onLogout(); return false;">Logout</a>
+            <button id="add-transaction-btn">+</button>
+
         `;
+    document.getElementById('add-transaction-btn').addEventListener('click', transactionModal.open);
   } else {
     nav.innerHTML = `
             <a href="/">Home</a>
