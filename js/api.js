@@ -5,7 +5,7 @@ export function fetchCategories() {
   if (!user.isAuthenticated) throw new Error('User is not authenticated.');
   return axios.get(`${process.env.API_URL}/api/categories`, {
     headers: { 'Authorization': `Bearer ${user.token}` }
-  }).then(response => response.data)
+  }).then(response => response.data.data)
     .catch(error => {
       console.error('Failed to fetch categories', error);
       return [];
@@ -17,7 +17,7 @@ export function fetchDashboard() {
   if (!user.isAuthenticated) throw new Error('User is not authenticated.');
   axios.get(`${process.env.API_URL}/api/dashboard`, { headers: { 'Authorization': `Bearer ${user.token}` } })
     .then(response => {
-      const data = response.data;
+      const data = response.data.data;
       document.getElementById('current-balance').textContent = data.balance.toFixed(2);
       document.getElementById('total-expense').textContent = data.total_expense.toFixed(2);
       document.getElementById('total-income').textContent = data.total_income.toFixed(2);
@@ -30,7 +30,7 @@ export function fetchTransactions() {
   // Replace with the actual API endpoint
   axios.get(`${process.env.API_URL}/api/transactions`, { headers: { 'Authorization': `Bearer ${user.token}` } })
     .then(response => {
-      const transactions = response.data;
+      const transactions = response.data.data;
       const transactionsList = document.getElementById('transactions-list');
       transactionsList.innerHTML = transactions.map(trans => `
         <div class="transaction-item">
