@@ -33,20 +33,5 @@ module.exports = merge(common, {
   ],
   output: {
     publicPath: '/finance-tracker-frontend/', // Make sure this is correct for your GitHub Pages URL
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/, 
-        exclude: /node_modules/, // Do not include node_modules
-        use: {
-          loader: 'babel-loader', // Use babel-loader for transpiling
-          options: {
-            presets: ['@babel/preset-env'], // Use the env preset
-            // Optionally, you can set plugins or additional settings
-          }
-        }
-      }
-    ]
   }
 });
