@@ -10,9 +10,5 @@ module.exports = {
     clean: true,
     filename: './js/app.js',
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env.API_URL': JSON.stringify(process.env.API_URL)
-    })
-  ]
+  plugins: []
 };

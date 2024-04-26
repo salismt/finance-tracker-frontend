@@ -1,6 +1,7 @@
 // auth.js
 import User from './user.js';
 import axios from 'axios'; // Ensure axios is available for making HTTP requests
+import page from 'page';
 
 const user = new User();
 

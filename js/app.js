@@ -5,6 +5,8 @@ import { onLoginSuccess, onLoginFailure,
 import { setupNavbar } from './nav.js';
 import { renderDashboard } from './dashboard.js';
 import { TransactionModal } from './modal.js';
+import page from 'page';
+
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -112,9 +114,4 @@ function googleAuthCallback(context) {
     console.error('Google callback did not include an authorization code');
     page.redirect('/finance-tracker-frontend/login')
   }
-}
-
-export function onLogout() {
-  user.logout();
-  page.redirect('/finance-tracker-frontend/login');
 }

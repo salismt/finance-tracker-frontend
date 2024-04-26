@@ -1,11 +1,12 @@
 // api.js
 import { user } from './auth.js';
+import axios from 'axios'; // Ensure axios is available for making HTTP requests
 
 // Import local data
-import localDashboardData from 'response-doc/dashboard.json';
-import localTransactionData from 'response-doc/transaction.json';
-import localCategoryData from 'response-doc/category.json';
-import localBalanceData from 'response-doc/balance.json';
+import localDashboardData from '../response-doc/dashboard.json';
+import localTransactionData from '../response-doc/transaction.json';
+import localCategoryData from '../response-doc/category.json';
+import localBalanceData from '../response-doc/balance.json';
 
 // Environment flag to switch between local data and API call
 const useLocalData = process.env.NODE_ENV === 'development';

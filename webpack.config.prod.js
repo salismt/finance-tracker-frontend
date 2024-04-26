@@ -2,6 +2,7 @@ const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack'); // Ensure webpack is required here
 
 module.exports = merge(common, {
   mode: 'production',
@@ -24,7 +25,11 @@ module.exports = merge(common, {
     }),
     new webpack.DefinePlugin({
       'process.env.API_URL': JSON.stringify(process.env.API_URL || 'https://finance-tracker-backend-zbxuhg7gpq-as.a.run.app'),
-      'process.env.FRONTEND_URL': JSON.stringify(process.env.FRONTEND_URL || 'https://salismt.github.io/finance-tracker-frontend')
-    })
+      'process.env.FRONTEND_URL': JSON.stringify(process.env.FRONTEND_URL || 'https://salismt.github.io/finance-tracker-frontend'),
+      'process.env.NODE_ENV': JSON.stringify('production')
+    }),
   ],
+  output: {
+    publicPath: '/finance-tracker-frontend/', // Make sure this is correct for your GitHub Pages URL
+  },
 });
