@@ -9,7 +9,7 @@ export async function handleGoogleCallback(code) {
   try {
     const response = await axios.post(`${process.env.FRONTEND_URL}/api/auth/google/callback`, { code });
     user.loginWithGoogle(response.data.token);
-    page.redirect('/finance-tracker-frontend/profile'); // Redirect to profile page after successful login
+    page.redirect(`${process.env.URL_PREFIX}profile`); // Redirect to profile page after successful login
   } catch (error) {
     console.error('Error processing Google login:', error);
     page.redirect('/finance-tracker-frontend/login'); // Redirect to login page on error
@@ -19,13 +19,13 @@ export async function handleGoogleCallback(code) {
 export function onLoginSuccess(googleUser) {
   user.loginWithGoogle(googleUser.getAuthResponse().id_token);
   console.log('Logged in as:', user.fetchProfileData().name);
-  page.redirect('/finance-tracker-frontend/profile');
+  page.redirect(`${process.env.URL_PREFIX}profile`);
 }
 
 export function onLoginFailure(error) {
   console.log(error);
   document.getElementById('login-error').textContent = 'Failed to login with Google';
-  page.redirect('/finance-tracker-frontend/login');
+  page.redirect(`${process.env.URL_PREFIX}login`);
 }
 
 export function onLogout() {
@@ -35,7 +35,7 @@ export function onLogout() {
       user.logout(); // This should clear the user data and update isAuthenticated to false
       sessionStorage.removeItem('isAuthenticated');
       sessionStorage.removeItem('token');
-      page.redirect(`${process.env.FRONTEND_URL}/login`);
+      page.redirect(`${process.env.URL_PREFIX}login`);
     });
 }
 

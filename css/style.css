@@ -403,3 +403,42 @@ textarea {
   font-weight: bold;
 }
 
+/* Style for the vertical navbar */
+.vertical-navbar {
+  position: fixed; /* Fixed position to pin to the left */
+  top: 0;
+  left: 0;
+  width: 200px; /* Width of the navbar */
+  height: 100vh; /* Full height */
+  background-color: #ffffff; /* Adjust color as needed */
+  border-right: 1px solid #dddddd; /* Border for the right edge */
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+/* Style for nav items */
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  color: #333333;
+  text-decoration: none;
+  border-bottom: 1px solid #dddddd; /* Border for each item */
+}
+
+.nav-item:hover {
+  background-color: #f4f4f4; /* Hover effect */
+}
+
+/* Style for icons */
+.nav-icon {
+  width: 24px; /* Size of icons */
+  height: 24px;
+  margin-right: 10px; /* Space between icon and text */
+}
+
+/* Push main content to the right to make space for the navbar */
+.main-container {
+  margin-left: 200px; /* Same as the width of the navbar */
+  padding: 20px; /* Optional padding */
+}
+

@@ -11,6 +11,30 @@ function updateNavbar() {
 
   if (user.isAuthenticated) {
     nav.innerHTML = `
+<nav id="nav" class="vertical-navbar">
+    <!-- Each nav item has an icon and text -->
+    <a href="/" class="nav-item">
+      <img src="../icons/home.png" alt="Home" class="nav-icon"/>
+      <span>Home</span>
+    </a>
+
+    <a href="/profile" class="nav-item">
+      <img src="../icons/user.png" alt="Profile" class="nav-icon"/>
+      <span>Profile</span>
+    </a>
+
+    <a href="/transactions" class="nav-item">
+      <img src="../icons/file.png" alt="Transactions" class="nav-icon"/>
+      <span>Transactions</span>
+    </a>
+
+    <a href="#" onclick="onLogout(); return false;">Logout</a>
+
+                <button id="add-transaction-btn" class="nav-item">+</button>
+
+
+    <!-- Other nav items... -->
+  </nav>
             <a href="/">Home</a>
             <a href="/categories">Categories</a>
             <a href="/transactions">Transactions</a>
@@ -28,8 +52,14 @@ function updateNavbar() {
     }
   } else {
     nav.innerHTML = `
-            <a href="/">Home</a>
-            <a href="/login">Login</a>
+<a href="/" class="nav-item">
+      <img src="../icons/home.png" alt="Home" class="nav-icon"/>
+      <span>Home</span>
+    </a>
+    <a href="/login" class="nav-item">
+      <img src="../icons/door.png" alt="Door" class="nav-icon"/>
+      <span>Login</span>
+    </a>
         `;
   }
 }

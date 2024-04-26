@@ -11,6 +11,7 @@ module.exports = merge(common, {
       template: './index.html',
     }),
     new CopyPlugin({
+
       patterns: [
         { from: 'img', to: 'img' },
         { from: 'css', to: 'css' },
@@ -21,12 +22,14 @@ module.exports = merge(common, {
         { from: 'icon.png', to: 'icon.png' },
         { from: '404.html', to: '404.html' },
         { from: 'site.webmanifest', to: 'site.webmanifest' },
+        { from: 'index.html', to: 'index.html' }
       ],
     }),
     new webpack.DefinePlugin({
       'process.env.API_URL': JSON.stringify(process.env.API_URL || 'https://finance-tracker-backend-zbxuhg7gpq-as.a.run.app'),
       'process.env.FRONTEND_URL': JSON.stringify(process.env.FRONTEND_URL || 'https://salismt.github.io/finance-tracker-frontend'),
-      'process.env.NODE_ENV': JSON.stringify('production')
+      'process.env.NODE_ENV': JSON.stringify('production'),
+      'process.env.URL_PREFIX': JSON.stringify('/finance-tracker-frontend/')
     }),
   ],
   output: {

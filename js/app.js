@@ -10,6 +10,10 @@ import page from 'page';
 
 
 document.addEventListener('DOMContentLoaded', function() {
+  var base = document.createElement('base');
+  base.href = window.location.hostname === 'localhost' ? '/' : '/finance-tracker-frontend/';
+  document.head.prepend(base);
+
   setupNavbar(); // Initialize the navbar when the DOM is ready
   page('/', index);
   page('/categories', categories);
@@ -83,7 +87,7 @@ function login() {
 
 function profile() {
   if (!user.isAuthenticated) {
-    page.redirect('/login'); // Redirect to login if not authenticated
+    page.redirect(`${process.env.URL_PREFIX}login`); // Redirect to login if not authenticated
     return;
   }
 
@@ -112,6 +116,6 @@ function googleAuthCallback(context) {
     handleGoogleCallback(code);
   } else {
     console.error('Google callback did not include an authorization code');
-    page.redirect('/finance-tracker-frontend/login')
+    page.redirect(`${process.env.URL_PREFIX}login`)
   }
 }
