@@ -1,7 +1,6 @@
 // app.js
 import { fetchCategories, fetchTransactions } from './api.js';
-import { onLoginSuccess, onLoginFailure,
-  handleGoogleCallback, user, onLogout } from './auth.js';
+import { onLoginSuccess, onLoginFailure, handleGoogleCallback, user, onLogout } from './auth.js';
 import { setupNavbar } from './nav.js';
 import { renderDashboard } from './dashboard.js';
 import { TransactionModal } from './modal.js';

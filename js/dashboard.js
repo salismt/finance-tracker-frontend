@@ -1,6 +1,4 @@
-import {
-  fetchDashboard
-} from './api.js';
+import { fetchDashboard } from './api.js';
 
 export function renderDashboard() {
   const app = document.getElementById('app');
