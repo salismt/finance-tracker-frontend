@@ -39,12 +39,25 @@ function categories() {
 
 function transactions() {
   const app = document.getElementById('app');
-  app.innerHTML = '<h1>Transactions</h1>';
+  app.innerHTML = `
+    <div class="transactions-page">
+      <h1 class="page-title">Statement</h1>
+      <div class="transaction-filters">
+        <input type="search" placeholder="Search" class="transaction-search" />
+        <select class="time-frame-select">
+          <option value="1">1 Month</option>
+          <option value="3">3 Months</option>
+          <option value="6">6 Months</option>
+          <option value="12">1 Year</option>
+        </select>
+      </div>
+      <div id="transactions-list" class="transactions-list">
+        <!-- Transactions will be dynamically inserted here -->
+      </div>
+    </div>
+  `;
 
-  fetchTransactions().then(transactions => {
-    const items = transactions.map(trans => `<li>${trans.description} - $${trans.amount}</li>`).join('');
-    app.innerHTML += `<ul>${items}</ul>`;
-  });
+  fetchTransactions();
 }
 
 function login() {

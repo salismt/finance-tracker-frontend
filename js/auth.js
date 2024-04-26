@@ -28,8 +28,14 @@ export function onLoginFailure(error) {
 }
 
 export function onLogout() {
-  user.logout();
-  page.redirect('/finance-tracker-frontend/login');
+  axios.post(`${process.env.API_URL}/api/logout`, {}, { headers: { 'Authorization': `Bearer ${user.token}` } })
+    .finally(() => {
+      // Whether or not the logout request succeeded, clear the client-side data
+      user.logout(); // This should clear the user data and update isAuthenticated to false
+      sessionStorage.removeItem('isAuthenticated');
+      sessionStorage.removeItem('token');
+      page.redirect(`${process.env.FRONTEND_URL}/login`);
+    });
 }
 
 export { user };

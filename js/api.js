@@ -12,11 +12,6 @@ export function fetchCategories() {
     });
 }
 
-export function fetchTransactions() {
-  if (!user.isAuthenticated) throw new Error('User is not authenticated.');
-  return Promise.resolve([{ description: 'Grocery shopping', amount: 25.00 }, { description: 'Electric bill', amount: 60.00 }]);
-}
-
 // Add the actual implementation for these API calls
 export function fetchDashboard() {
   if (!user.isAuthenticated) throw new Error('User is not authenticated.');
@@ -28,5 +23,27 @@ export function fetchDashboard() {
       document.getElementById('total-income').textContent = data.total_income.toFixed(2);
     })
     .catch(error => console.error('Failed to fetch current balance', error));
+}
+
+// api.js
+export function fetchTransactions() {
+  // Replace with the actual API endpoint
+  axios.get(`${process.env.API_URL}/api/transactions`, { headers: { 'Authorization': `Bearer ${user.token}` } })
+    .then(response => {
+      const transactions = response.data;
+      const transactionsList = document.getElementById('transactions-list');
+      transactionsList.innerHTML = transactions.map(trans => `
+        <div class="transaction-item">
+          <span class="transaction-description">${trans.description}</span>
+          <span class="transaction-date">${new Date(trans.date).toLocaleDateString()}</span>
+          <span class="transaction-category">${trans.category}</span>
+          <span class="transaction-amount">$${trans.amount.toFixed(2)}</span>
+        </div>
+      `).join('');
+    })
+    .catch(error => {
+      console.error('Failed to fetch transactions', error);
+      // Handle the error, e.g., show a message to the user
+    });
 }
 

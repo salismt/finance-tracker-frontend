@@ -16,9 +16,12 @@ export default class User {
 
   logout() {
     this.isAuthenticated = false;
-    this.token = null;
     this.profile = null;
-    this._notifyAuthChange();
+    this.token = null;
+    // Call the observer if one is set to update the UI accordingly
+    if (typeof this.onAuthChange === 'function') {
+      this.onAuthChange();
+    }
   }
 
   _notifyAuthChange() {

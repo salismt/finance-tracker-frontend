@@ -20,6 +20,12 @@ function updateNavbar() {
 
         `;
     document.getElementById('add-transaction-btn').addEventListener('click', transactionModal.open);
+    if (user.isAuthenticated) {
+      document.getElementById('logout-link').addEventListener('click', (event) => {
+        event.preventDefault();
+        onLogout(); // Call the logout function from auth.js
+      });
+    }
   } else {
     nav.innerHTML = `
             <a href="/">Home</a>
