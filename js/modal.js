@@ -6,7 +6,7 @@ export class TransactionModal {
   constructor() {
     this.modal = document.getElementById('transaction-modal');
     this.form = document.getElementById('transaction-form');
-    this.closeButton = document.querySelector('.close-button');
+    this.closeButton = document.getElementById('.close-button');
 
     // Bind class methods
     this.open = this.open.bind(this);
@@ -15,8 +15,8 @@ export class TransactionModal {
     this.populateCategories = this.populateCategories.bind(this);
 
     // Add event listeners
-    this.closeButton.addEventListener('click', this.close);
-    this.form.addEventListener('submit', this.submit);
+    // this.closeButton.addEventListener('click', this.close);
+    // this.form.addEventListener('submit', this.submit);
 
     // Fetch categories when instantiated
     this.populateCategories();

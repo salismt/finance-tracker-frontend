@@ -8,6 +8,8 @@ import webpack from "webpack"; // Ensure webpack is required here
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -24,8 +26,15 @@ export default merge(common, {
       watch: true,
     },
     port: 8080,
+    devMiddleware: {
+      publicPath: "/finance-tracker-frontend/"
+    }
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      template: './index.html',
+      publicPath: '/finance-tracker-frontend/'
+    }),
     new webpack.DefinePlugin({
       'process.env.API_URL': JSON.stringify('http://localhost:3000'),
       'process.env.FRONTEND_URL': JSON.stringify('http://localhost:8080'),

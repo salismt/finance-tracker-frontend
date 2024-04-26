@@ -2,19 +2,15 @@
 import { user } from './auth.js';
 
 // Import local data
-import localDashboardData from '../response-doc/dashboard.json';
-import localTransactionData from '../response-doc/transaction.json';
-import localCategoryData from '../response-doc/category.json';
-import localBalanceData from '../response-doc/balance.json';
+import { dashboardData, balanceData, categoryData, transactionData } from './localData.js';
 
 // Environment flag to switch between local data and API call
-const useLocalData = process.env.NODE_ENV === 'development';
-
+const useLocalData = window.location.hostname === 'localhost';
 
 export function fetchCategories() {
   if (useLocalData) {
     // Using local data for categories
-    return Promise.resolve(localCategoryData.data.category);
+    return Promise.resolve(categoryData().data.category);
   } else {
     if (!user.isAuthenticated) throw new Error('User is not authenticated.');
     return axios.get(`${process.env.API_URL}/api/categories`, {
@@ -31,7 +27,7 @@ export function fetchCategories() {
 export function fetchDashboard() {
   if (useLocalData) {
     // Using local data for dashboard
-    return Promise.resolve(localDashboardData.data);
+    return Promise.resolve(dashboardData().data);
   } else {
     if (!user.isAuthenticated) throw new Error('User is not authenticated.');
     axios.get(`${process.env.API_URL}/api/dashboard`, { headers: { 'Authorization': `Bearer ${user.token}` } })
@@ -49,7 +45,7 @@ export function fetchDashboard() {
 export function fetchTransactions() {
   if (useLocalData) {
     // Using local data for transactions
-    return Promise.resolve(localTransactionData.data);
+    return Promise.resolve(transactionData().data);
   } else {
     axios.get(`${process.env.API_URL}/api/transactions`, { headers: { 'Authorization': `Bearer ${user.token}` } })
       .then(response => {
@@ -74,7 +70,7 @@ export function fetchTransactions() {
 export function fetchBalance() {
   if (useLocalData) {
     // Using local data for balance
-    return Promise.resolve(localBalanceData.data);
+    return Promise.resolve(balanceData().data);
   } else {
     // Make an API call if not using local data
     if (!user.isAuthenticated) throw new Error('User is not authenticated.');

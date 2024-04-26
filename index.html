@@ -7,7 +7,6 @@
   <title>Finance Tracker App</title>
   <link rel="stylesheet" href="css/style.css">
   <meta name="description" content="">
-  <base href="/finance-tracker-frontend/">
 
 
   <meta property="og:title" content="Finance Tracker">
@@ -19,6 +18,14 @@
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icon.png">
+
+<!--  <script>-->
+<!--    if (window.location.hostname === 'localhost') {-->
+<!--      document.querySelector('base').href = '/';-->
+<!--    } else {-->
+<!--      document.querySelector('base').href = '/finance-tracker-frontend/';-->
+<!--    }-->
+<!--  </script>-->
 
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#fafafa">
@@ -38,6 +45,7 @@
 
 <body>
 
+<nav id="nav"></nav>
 <!-- Add this inside the <body> tag -->
 <main id="app" class="main-container">
   <!-- Content will be injected by JavaScript -->
