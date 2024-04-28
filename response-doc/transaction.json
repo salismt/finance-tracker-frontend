@@ -5,7 +5,7 @@
       "category": "food",
       "date": "2020-12-09T16:09:53+00:00",
       "currency": "IDR",
-      "amount": 300,
+      "amount": "300",
       "type": "expense"
     },
     {
@@ -13,7 +13,7 @@
       "category": "food",
       "date": "2020-12-09T16:09:53+00:00",
       "currency": "IDR",
-      "amount": 300,
+      "amount": "300",
       "type": "expense"
     }
   ]

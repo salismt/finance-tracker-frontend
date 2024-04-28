@@ -62,6 +62,11 @@ export function renderDashboard() {
   </div>
   `;
 
-  // Fetch and populate the data
-  fetchDashboard();
+  fetchDashboard().then(dashboardData => {
+    if (dashboardData != null) {
+      document.getElementById('current-balance').textContent = dashboardData.current_balance;
+      document.getElementById('total-expense').textContent = dashboardData.total_expense;
+      document.getElementById('total-income').textContent = dashboardData.total_income;
+    }
+  });
 }

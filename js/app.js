@@ -1,5 +1,5 @@
 // app.js
-import { fetchCategories, fetchTransactions } from './api.js';
+import {fetchBalance, fetchCategories, fetchTransactions} from './api.js';
 import { onLoginSuccess, onSignupSuccess, user, onLogout } from './auth.js';
 import Navbar from './nav.js';
 import { renderDashboard } from './dashboard.js';
@@ -8,7 +8,7 @@ import config from './config.js';
 
 document.addEventListener('DOMContentLoaded', function() {
   var base = document.createElement('base');
-  base.href = window.location.hostname === 'localhost' ? '/' : '/finance-tracker-frontend/';
+  base.href = config.URL_PREFIX;
   document.head.prepend(base);
   const transactionModal = new TransactionModal(); // Instantiate the modal
   const navbar = new Navbar(transactionModal);
@@ -36,8 +36,8 @@ function categories() {
   const app = document.getElementById('app');
   app.innerHTML = '<h1>Categories</h1><div>Loading categories...</div>';
 
-  fetchCategories().then(categories => {
-    const list = categories.map(cat => `<li>${cat.name}</li>`).join('');
+  fetchCategories().then(categoryData => {
+    const list = categoryData.categories.map(cat => `<li>${cat.name}</li>`).join('');
     app.innerHTML = `<h1>Categories</h1><ul>${list}</ul>`;
   });
 }
@@ -62,7 +62,18 @@ function transactions() {
     </div>
   `;
 
-  fetchTransactions();
+  fetchTransactions().then(transactionData => {
+    const transactionsList = document.getElementById('transactions-list');
+    transactionsList.innerHTML = transactionData.transactions.map(trx => `
+        <div class="transaction-item">
+          <span class="transaction-description">${trx.description}</span>
+          <span class="transaction-date">${new Date(trx.date).toLocaleDateString()}</span>
+          <span class="transaction-category">${trx.category}</span>
+          <span class="transaction-amount">$${trx.amount}</span>
+        </div>
+      `).join('');
+
+  });
 }
 
 function login() {
@@ -120,4 +131,8 @@ function profile() {
       </div>
     </div>
   `;
+  fetchBalance().then(balanceData => {
+    const balance = document.getElementById('profile-balance');
+    balance.textContent = balanceData.current_balance;
+  })
 }
