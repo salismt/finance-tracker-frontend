@@ -1,21 +1,22 @@
 // api.js
 import { user } from './auth.js';
+import config from './config.js';
 
 // Import local data
 import { dashboardData, balanceData, categoryData, transactionData } from './localData.js';
 
 // Environment flag to switch between local data and API call
-const useLocalData = window.location.hostname === 'localhost';
+const useLocalData = config.NODE_ENV === 'development';
 
 export function fetchCategories() {
   if (useLocalData) {
     // Using local data for categories
-    return Promise.resolve(categoryData().data.category);
+    return Promise.resolve(categoryData().data.categories);
   } else {
     if (!user.isAuthenticated) throw new Error('User is not authenticated.');
-    return axios.get(`${process.env.API_URL}/api/categories`, {
+    return axios.get(`${config.API_URL}/api/categories`, {
       headers: { 'Authorization': `Bearer ${user.token}` }
-    }).then(response => response.data.data)
+    }).then(response => response.data.categories)
       .catch(error => {
         console.error('Failed to fetch categories', error);
         return [];
@@ -27,13 +28,13 @@ export function fetchCategories() {
 export function fetchDashboard() {
   if (useLocalData) {
     // Using local data for dashboard
-    return Promise.resolve(dashboardData().data);
+    return Promise.resolve(dashboardData());
   } else {
     if (!user.isAuthenticated) throw new Error('User is not authenticated.');
-    axios.get(`${process.env.API_URL}/api/dashboard`, { headers: { 'Authorization': `Bearer ${user.token}` } })
+    axios.get(`${config.API_URL}/api/dashboard`, { headers: { 'Authorization': `Bearer ${user.token}` } })
       .then(response => {
-        const data = response.data.data;
-        document.getElementById('current-balance').textContent = data.balance.toFixed(2);
+        const data = response.data;
+        document.getElementById('current-balance').textContent = data.current_balance.toFixed(2);
         document.getElementById('total-expense').textContent = data.total_expense.toFixed(2);
         document.getElementById('total-income').textContent = data.total_income.toFixed(2);
       })
@@ -47,9 +48,9 @@ export function fetchTransactions() {
     // Using local data for transactions
     return Promise.resolve(transactionData().data);
   } else {
-    axios.get(`${process.env.API_URL}/api/transactions`, { headers: { 'Authorization': `Bearer ${user.token}` } })
+    axios.get(`${config.API_URL}/api/transactions`, { headers: { 'Authorization': `Bearer ${user.token}` } })
       .then(response => {
-        const transactions = response.data.data;
+        const transactions = response.data.transactions;
         const transactionsList = document.getElementById('transactions-list');
         transactionsList.innerHTML = transactions.map(trans => `
         <div class="transaction-item">
@@ -74,9 +75,9 @@ export function fetchBalance() {
   } else {
     // Make an API call if not using local data
     if (!user.isAuthenticated) throw new Error('User is not authenticated.');
-    return axios.get(`${process.env.API_URL}/api/balance`, {
+    return axios.get(`${config.API_URL}/api/balance`, {
       headers: { 'Authorization': `Bearer ${user.token}` }
-    }).then(response => response.data)
+    }).then(response => response.data.balance)
       .catch(error => {
         console.error('Failed to fetch balance', error);
         return null;

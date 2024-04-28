@@ -1,11 +1,10 @@
 // app.js
 import { fetchCategories, fetchTransactions } from './api.js';
-import { onLoginSuccess, onLoginFailure, handleGoogleCallback, user, onLogout } from './auth.js';
+import { onLoginSuccess, onSignupSuccess, user, onLogout } from './auth.js';
 import Navbar from './nav.js';
 import { renderDashboard } from './dashboard.js';
 import { TransactionModal } from './modal.js';
-
-
+import config from './config.js';
 
 document.addEventListener('DOMContentLoaded', function() {
   var base = document.createElement('base');
@@ -18,8 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
   page('/categories', categories);
   page('/transactions', transactions);
   page('/login', login);
-  page('/auth/google/callback', googleAuthCallback)
+  page('/signup', signup);
   page('/profile', profile);
+  page('/logout', onLogout(navbar))
   page();
 });
 
@@ -68,25 +68,40 @@ function transactions() {
 function login() {
   const app = document.getElementById('app');
   app.innerHTML = `
-        <h1>Login</h1>
-        <div id="login-button"></div> <!-- Google Sign-In button -->
-        <div id="login-error"></div>
-    `;
+    <h1>Login</h1>
+    <form id="login-form">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <button type="submit">Login</button>
+    </form>
+    <div id="login-error"></div>
+  `;
+  document.getElementById('login-form').addEventListener('submit', onLoginSuccess)
+}
 
-  gapi.signin2.render('login-button', {
-    'scope': 'profile email',
-    'width': 240,
-    'height': 50,
-    'longtitle': true,
-    'theme': 'dark',
-    'onsuccess': onLoginSuccess,
-    'onfailure': onLoginFailure
-  });
+function signup() {
+  const app = document.getElementById('app');
+  app.innerHTML = `
+    <h1>Sign Up</h1>
+    <form id="signup-form">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <button type="submit">Sign Up</button>
+    </form>
+    <div id="signup-error"></div>
+  `;
+  document.getElementById('signup-form').addEventListener('submit', onSignupSuccess)
 }
 
 function profile() {
   if (!user.isAuthenticated) {
-    page.redirect(`${process.env.URL_PREFIX}login`); // Redirect to login if not authenticated
+    page.redirect(`${config.URL_PREFIX}login`); // Redirect to login if not authenticated
     return;
   }
 
@@ -106,15 +121,4 @@ function profile() {
       </div>
     </div>
   `;
-}
-
-function googleAuthCallback(context) {
-  const query = new URLSearchParams(window.location.search);
-  const code = query.get('code');
-  if (code) {
-    handleGoogleCallback(code);
-  } else {
-    console.error('Google callback did not include an authorization code');
-    page.redirect(`${process.env.URL_PREFIX}login`)
-  }
 }

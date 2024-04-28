@@ -1,12 +1,10 @@
 {
-  "data": {
-    "category": [
-      {
-        "key": "food"
-      },
-      {
-        "key": "transport"
-      }
-    ]
-  }
+  "categories": [
+    {
+      "key": "food"
+    },
+    {
+      "key": "transport"
+    }
+  ]
 }
