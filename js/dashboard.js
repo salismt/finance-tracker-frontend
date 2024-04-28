@@ -16,16 +16,17 @@ export function renderDashboard() {
         <span>Total Income</span>
         <div class="amount-box">$<span id="total-income">Loading...</span></div>
       </div>
-      <div class="dashboard-item full-width">
+      <!-- For future development -->
+      <!--<div class="dashboard-item full-width">
         <span>Balance History</span>
         <div id="balance-history" class="chart"></div>
       </div>
       <div class="dashboard-item full-width">
         <span>Categories</span>
         <div id="categories-chart" class="chart"></div>
-      </div>
+      </div>-->
       <div class="dashboard-item full-width">
-        <span>Statements</span>
+        <span>Transactions</span>
         <div id="last-transactions">Loading...</div>
       </div>
     </div>
@@ -67,6 +68,14 @@ export function renderDashboard() {
       document.getElementById('current-balance').textContent = dashboardData.current_balance;
       document.getElementById('total-expense').textContent = dashboardData.total_expense;
       document.getElementById('total-income').textContent = dashboardData.total_income;
+      document.getElementById('last-transactions').innerHTML = dashboardData.transactions.slice(0, 3).map(trx => `
+        <div class="transaction-item">
+          <span class="transaction-description">${trx.name}</span>
+          <span class="transaction-date">${new Date(trx.date).toLocaleDateString()}</span>
+          <span class="transaction-category">${trx.category}</span>
+          <span class="transaction-amount">$${trx.amount}</span>
+        </div>
+      `).join('');
     }
   });
 }

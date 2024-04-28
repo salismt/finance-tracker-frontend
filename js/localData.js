@@ -23,7 +23,7 @@ export function dashboardData() {
         "name": "transport"
       }
     ],
-    "statements": [{
+    "transactions": [{
       "name": "mcdonald",
       "category": "food",
       "date": "2020-12-09T16:09:53+00:00",
@@ -59,7 +59,7 @@ export function transactionData() {
 
 export function balanceData() {
   return {
-    "balance": "8000"
+    "current_balance": "8000"
   }
 }
 

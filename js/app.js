@@ -66,7 +66,7 @@ function transactions() {
     const transactionsList = document.getElementById('transactions-list');
     transactionsList.innerHTML = transactionData.transactions.map(trx => `
         <div class="transaction-item">
-          <span class="transaction-description">${trx.description}</span>
+          <span class="transaction-description">${trx.name}</span>
           <span class="transaction-date">${new Date(trx.date).toLocaleDateString()}</span>
           <span class="transaction-category">${trx.category}</span>
           <span class="transaction-amount">$${trx.amount}</span>
