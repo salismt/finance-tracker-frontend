@@ -1,39 +1,56 @@
-// User.js
 export default class User {
   constructor() {
-    this.isAuthenticated = false;
-    this.profile = null;
-    this.token = null;
-    this.onAuthChange = null;  // Observer for authentication changes
+    this.onAuthChange = null;
+    this.load();
   }
 
-  loginWithGoogle(googleUser) {
+  loginWithPassport(token, user) {
     this.isAuthenticated = true;
-    this.token = googleUser.getAuthResponse().id_token;
-    this.profile = googleUser.getBasicProfile();
-    this._notifyAuthChange();
+    this.token = token;
+    this.name = user.name;
+    this.email = user.email;
+    this.save();
+    this.notifyAuthChange();
   }
 
   logout() {
     this.isAuthenticated = false;
-    this.profile = null;
+    this.name = null;
+    this.email = null;
     this.token = null;
-    // Call the observer if one is set to update the UI accordingly
-    if (typeof this.onAuthChange === 'function') {
-      this.onAuthChange();
-    }
+    this.updateUI();
   }
 
-  _notifyAuthChange() {
+  save() {
+    // Store user data in sessionStorage
+    sessionStorage.setItem('user', JSON.stringify({
+      isAuthenticated: this.isAuthenticated,
+      token: this.token,
+      name: this.name,
+      email: this.email
+    }));
+  }
+
+  notifyAuthChange() {
     if (this.onAuthChange) {
       this.onAuthChange();
     }
   }
 
-  fetchProfileData() {
-    return {
-      name: this.profile ? this.profile.getName() : '',
-      email: this.profile ? this.profile.getEmail() : ''
-    };
+  load() {
+    // Load user data from sessionStorage
+    const data = JSON.parse(sessionStorage.getItem('user'));
+    if (data) {
+      this.isAuthenticated = data.isAuthenticated;
+      this.token = data.token;
+      this.name = data.name;
+      this.email = data.email;
+    }
+  }
+
+  updateUI() {
+    if (typeof this.onAuthChange === 'function') {
+      this.onAuthChange();
+    }
   }
 }

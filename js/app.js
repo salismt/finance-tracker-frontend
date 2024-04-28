@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
   page('/login', login);
   page('/signup', signup);
   page('/profile', profile);
-  page('/logout', onLogout(navbar))
+  // page('/logout', onLogout(navbar))
   page();
 });
 
@@ -105,15 +105,14 @@ function profile() {
     return;
   }
 
-  const userProfile = user.fetchProfileData();
   const app = document.getElementById('app');
   app.innerHTML = `
     <div class="profile-container">
       <h2 class="profile-title">Profile</h2>
       <div class="profile-info">
-        <img src="${userProfile.getImageUrl()}" alt="Profile Image" class="profile-image">
-        <p class="profile-name">${userProfile.getName()}</p>
-        <p class="profile-email">${userProfile.getEmail()}</p>
+        <!-- <img src="avatar.png" alt="Profile Image" class="profile-image"> -->
+        <p class="profile-name">${user.name}</p>
+        <p class="profile-email">${user.email}</p>
       </div>
       <div class="balance-info">
         <h3>Balance</h3>
