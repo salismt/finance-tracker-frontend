@@ -5,20 +5,24 @@ import { fetchCategories } from './api.js';
 export class TransactionModal {
   constructor() {
     this.modal = document.getElementById('transaction-modal');
-    this.form = document.getElementById('transaction-form');
-    this.closeButton = document.getElementById('.close-button');
+    this.setupModal();
+  }
 
-    // Bind class methods
-    this.open = this.open.bind(this);
-    this.close = this.close.bind(this);
-    this.submit = this.submit.bind(this);
-    this.populateCategories = this.populateCategories.bind(this);
+  setupModal() {
+    // Ensure modal content is fully loaded or dynamically create it here
+    this.form = document.getElementById('transaction-form'); // Assuming the modal HTML is already in the DOM
 
-    // Add event listeners
-    // this.closeButton.addEventListener('click', this.close);
-    // this.form.addEventListener('submit', this.submit);
+    if (!this.form) {
+      console.error('Transaction form is not available.');
+      return;
+    }
 
-    // Fetch categories when instantiated
+    this.closeButton = document.getElementById('close-button');
+    this.closeButton.addEventListener('click', () => this.close());
+
+    this.form.addEventListener('submit', (event) => this.submit(event));
+
+    // Populate categories after ensuring the form is available
     this.populateCategories();
   }
 
@@ -52,7 +56,7 @@ export class TransactionModal {
         option.textContent = category.name;
         categorySelect.appendChild(option);
       });
-    });
+    }).catch(error => console.error('Failed to fetch categories:', error));
   }
 }
 

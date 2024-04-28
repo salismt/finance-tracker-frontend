@@ -33,7 +33,7 @@ export function renderDashboard() {
     <!-- Input Transaction Modal -->
   <div id="transaction-modal" class="modal">
     <div class="modal-content">
-      <span class="close-button" id="close-button" onclick="closeModal()">&times;</span>
+      <span class="close-button" id="close-button">&times;</span>
       <h2>Input Transaction</h2>
       <form id="transaction-form">
         <label for="transaction-name">Transaction Name</label>

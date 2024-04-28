@@ -1,7 +1,7 @@
 // app.js
 import { fetchCategories, fetchTransactions } from './api.js';
 import { onLoginSuccess, onLoginFailure, handleGoogleCallback, user, onLogout } from './auth.js';
-import { setupNavbar } from './nav.js';
+import Navbar from './nav.js';
 import { renderDashboard } from './dashboard.js';
 import { TransactionModal } from './modal.js';
 
@@ -11,8 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
   var base = document.createElement('base');
   base.href = window.location.hostname === 'localhost' ? '/' : '/finance-tracker-frontend/';
   document.head.prepend(base);
+  const transactionModal = new TransactionModal(); // Instantiate the modal
+  const navbar = new Navbar(transactionModal);
 
-  setupNavbar(); // Initialize the navbar when the DOM is ready
   page('/', index);
   page('/categories', categories);
   page('/transactions', transactions);
