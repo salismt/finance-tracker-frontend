@@ -13,7 +13,7 @@ const config = (() => {
         API_URL: 'https://finance-tracker-backend-zbxuhg7gpq-as.a.run.app/',
         FRONTEND_URL: 'https://salismt.github.io/finance-tracker-frontend/',
         NODE_ENV: 'production',
-        URL_PREFIX: '/finance-tracker-frontend/'
+        URL_PREFIX: '/'
       };
   }
 })();
