@@ -21,7 +21,7 @@ export default merge(common, {
       patterns: [
         { from: 'img', to: 'img' },
         { from: 'css', to: 'css' },
-        { from: 'js/vendor', to: 'js/vendor' },
+        { from: 'js', to: 'js' },
         { from: 'icon.svg', to: 'icon.svg' },
         { from: 'favicon.ico', to: 'favicon.ico' },
         { from: 'robots.txt', to: 'robots.txt' },
@@ -30,14 +30,8 @@ export default merge(common, {
         { from: 'site.webmanifest', to: 'site.webmanifest' }
       ],
     }),
-    new webpack.DefinePlugin({
-      'process.env.API_URL': JSON.stringify(process.env.API_URL || 'https://finance-tracker-backend-zbxuhg7gpq-as.a.run.app'),
-      'process.env.FRONTEND_URL': JSON.stringify(process.env.FRONTEND_URL || 'https://salismt.github.io/finance-tracker-frontend'),
-      'process.env.NODE_ENV': JSON.stringify('production'),
-      'process.env.URL_PREFIX': JSON.stringify('/finance-tracker-frontend/')
-    }),
   ],
   output: {
-    publicPath: '/finance-tracker-frontend/', // Make sure this is correct for your GitHub Pages URL
+    publicPath: '/', // Make sure this is correct for your GitHub Pages URL
   }
 });

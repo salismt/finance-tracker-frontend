@@ -27,20 +27,14 @@ export default merge(common, {
     },
     port: 8080,
     devMiddleware: {
-      publicPath: "/finance-tracker-frontend/"
+      publicPath: "/"
     }
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.html',
-      publicPath: '/finance-tracker-frontend/'
+      publicPath: '/'
     }),
-    new webpack.DefinePlugin({
-      'process.env.API_URL': JSON.stringify('http://localhost:3000'),
-      'process.env.FRONTEND_URL': JSON.stringify('http://localhost:8080'),
-      'process.env.NODE_ENV': JSON.stringify('development'),
-      'process.env.URL_PREFIX': JSON.stringify('/')
-    })
   ],
   resolve: {
     alias: {

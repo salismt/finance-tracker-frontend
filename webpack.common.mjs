@@ -11,7 +11,7 @@ export default {
   output: {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    filename: 'bundle.js', // Just the filename, Webpack will put this in the dist directory
+    filename: 'bundle.js',
   },
   plugins: []
 };

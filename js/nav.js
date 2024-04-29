@@ -15,19 +15,19 @@ class Navbar {
     if (user.isAuthenticated) {
       this.nav.innerHTML = `
                 <nav class="vertical-navbar">
-                    <a href="${config.FRONTEND_URL}" class="nav-item">
+                    <a href="${config.URL_PREFIX}" class="nav-item">
                         <img src="https://storage.googleapis.com/finance-tracker-img-bucket/home.png" alt="Home" class="nav-icon"/>
                     </a>
-                    <a href="${config.FRONTEND_URL}profile" class="nav-item">
+                    <a href="${config.URL_PREFIX}profile" class="nav-item">
                         <img src="https://storage.googleapis.com/finance-tracker-img-bucket/user.png" alt="Profile" class="nav-icon"/>
                     </a>
-                    <a href="${config.FRONTEND_URL}transactions" class="nav-item">
+                    <a href="${config.URL_PREFIX}transactions" class="nav-item">
                         <img src="https://storage.googleapis.com/finance-tracker-img-bucket/file.png" alt="Transactions" class="nav-icon"/>
                     </a>
                     <a href="#" onclick="this.onLogout(); return false;" class="nav-item">
                         <img src="https://storage.googleapis.com/finance-tracker-img-bucket/logout.png" alt="Logout" class="nav-icon"/>
                     </a>
-                    <a href="${config.FRONTEND_URL}add-transaction" id="add-transaction-btn" class="nav-item">
+                    <a href="${config.URL_PREFIX}add-transaction" id="add-transaction-btn" class="nav-item">
                         <img src="https://storage.googleapis.com/finance-tracker-img-bucket/plus.png" alt="Transactions" class="nav-icon"/>
                     </a>
                 </nav>
@@ -37,10 +37,10 @@ class Navbar {
     } else {
       this.nav.innerHTML = `
                 <nav class="vertical-navbar">
-                    <a href="${config.FRONTEND_URL}login" class="nav-item">
+                    <a href="${config.URL_PREFIX}login" class="nav-item">
                         <img src="https://storage.googleapis.com/finance-tracker-img-bucket/login.png" alt="Login" class="nav-icon"/>
                     </a>
-                    <a href="${config.FRONTEND_URL}signup" class="nav-item">
+                    <a href="${config.URL_PREFIX}signup" class="nav-item">
                         <img src="https://storage.googleapis.com/finance-tracker-img-bucket/signup.png" alt="Signup" class="nav-icon"/>
                     </a>
                 </nav>
