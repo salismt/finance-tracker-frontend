@@ -15,19 +15,19 @@ class Navbar {
       this.nav.innerHTML = `
                 <nav class="vertical-navbar">
                     <a href="/" class="nav-item">
-                        <img src="../icons/home.png" alt="Home" class="nav-icon"/>
+                        <img src="https://storage.googleapis.com/finance-tracker-img-bucket/home.png" alt="Home" class="nav-icon"/>
                     </a>
                     <a href="/profile" class="nav-item">
-                        <img src="../icons/user.png" alt="Profile" class="nav-icon"/>
+                        <img src="https://storage.googleapis.com/finance-tracker-img-bucket/user.png" alt="Profile" class="nav-icon"/>
                     </a>
                     <a href="/transactions" class="nav-item">
-                        <img src="../icons/file.png" alt="Transactions" class="nav-icon"/>
+                        <img src="https://storage.googleapis.com/finance-tracker-img-bucket/file.png" alt="Transactions" class="nav-icon"/>
                     </a>
                     <a href="#" onclick="this.onLogout(); return false;" class="nav-item">
-                        <img src="../icons/logout.png" alt="Logout" class="nav-icon"/>
+                        <img src="https://storage.googleapis.com/finance-tracker-img-bucket/logout.png" alt="Logout" class="nav-icon"/>
                     </a>
                     <a href="/add-transaction" id="add-transaction-btn" class="nav-item">
-                        <img src="../icons/plus.png" alt="Transactions" class="nav-icon"/>
+                        <img src="https://storage.googleapis.com/finance-tracker-img-bucket/plus.png" alt="Transactions" class="nav-icon"/>
                     </a>
                 </nav>
             `;
@@ -37,10 +37,10 @@ class Navbar {
       this.nav.innerHTML = `
                 <nav class="vertical-navbar">
                     <a href="/login" class="nav-item">
-                        <img src="../icons/login.png" alt="Login" class="nav-icon"/>
+                        <img src="https://storage.googleapis.com/finance-tracker-img-bucket/login.png" alt="Login" class="nav-icon"/>
                     </a>
                     <a href="/signup" class="nav-item">
-                        <img src="../icons/signup.png" alt="Signup" class="nav-icon"/>
+                        <img src="https://storage.googleapis.com/finance-tracker-img-bucket/signup.png" alt="Signup" class="nav-icon"/>
                     </a>
                 </nav>
 

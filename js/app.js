@@ -121,7 +121,7 @@ function profile() {
     <div class="profile-container">
       <h2 class="profile-title">Profile</h2>
       <div class="profile-info">
-        <img src="../icons/man-avatar.png" alt="Profile Image" class="profile-image">
+        <img src="https://storage.googleapis.com/finance-tracker-img-bucket/man-avatar.png" alt="Profile Image" class="profile-image">
         <p class="profile-name">${user.name}</p>
         <p class="profile-email">${user.email}</p>
       </div>
