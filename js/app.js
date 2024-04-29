@@ -126,7 +126,7 @@ function profile() {
         <p class="profile-email">${user.email}</p>
       </div>
       <div class="balance-info">
-        <h3>Balance ina</h3>
+        <h3>Balance</h3>
         <p class="balance-amount">$<span id="profile-balance">0</span></p>
       </div>
     </div>
