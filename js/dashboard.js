@@ -5,15 +5,15 @@ export function renderDashboard() {
   app.innerHTML = `
     <div id="dashboard" class="dashboard">
       <div class="dashboard-item">
-        <span>Current Balance</span>
+        <h3>Current Balance</h3>
         <div class="amount-box">$<span id="current-balance">Loading...</span></div>
       </div>
       <div class="dashboard-item">
-        <span>Total Expense</span>
+        <h3>Total Expense</h3>
         <div class="amount-box">$<span id="total-expense">Loading...</span></div>
       </div>
       <div class="dashboard-item">
-        <span>Total Income</span>
+        <h3>Total Income</h3>
         <div class="amount-box">$<span id="total-income">Loading...</span></div>
       </div>
       <!-- For future development -->
@@ -26,7 +26,7 @@ export function renderDashboard() {
         <div id="categories-chart" class="chart"></div>
       </div>-->
       <div class="dashboard-item full-width">
-        <span>Transactions</span>
+        <h3>Transactions</h3>
         <div id="last-transactions">Loading...</div>
       </div>
     </div>

@@ -46,8 +46,8 @@ function transactions() {
   const app = document.getElementById('app');
   app.innerHTML = `
     <div class="transactions-page">
-      <h1 class="page-title">Statement</h1>
       <div class="transaction-filters">
+        <h1 class="page-title">Statement</h1>
         <input type="search" placeholder="Search" class="transaction-search" />
         <select class="time-frame-select">
           <option value="1">1 Month</option>
@@ -60,7 +60,7 @@ function transactions() {
         <!-- Transactions will be dynamically inserted here -->
       </div>
     </div>
-  `;
+    `;
 
   fetchTransactions().then(transactionData => {
     const transactionsList = document.getElementById('transactions-list');
@@ -121,7 +121,7 @@ function profile() {
     <div class="profile-container">
       <h2 class="profile-title">Profile</h2>
       <div class="profile-info">
-        <!-- <img src="avatar.png" alt="Profile Image" class="profile-image"> -->
+        <img src="../icons/man-avatar.png" alt="Profile Image" class="profile-image">
         <p class="profile-name">${user.name}</p>
         <p class="profile-email">${user.email}</p>
       </div>
