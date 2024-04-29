@@ -126,8 +126,8 @@ function profile() {
         <p class="profile-email">${user.email}</p>
       </div>
       <div class="balance-info">
-        <h3>Balance</h3>
-        <p class="balance-amount">$<span id="profile-balance">220</span></p>
+        <h3>Balance ina</h3>
+        <p class="balance-amount">$<span id="profile-balance">0</span></p>
       </div>
     </div>
   `;
@@ -135,6 +135,7 @@ function profile() {
     const balance = document.getElementById('profile-balance');
     balance.textContent = balanceData.current_balance;
   })
+  document.getElementById('profile-balance').innerHTML = "79999";
 }
 
 function addTransaction() {

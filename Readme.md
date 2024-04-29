@@ -43,3 +43,26 @@ npm run predeploy
 ```
 npm run deploy
 ```
+
+### How to deploy
+
+Commit the changes
+```
+git add -- .
+git commit -m "commit"
+```
+
+Then build the image
+```
+gcloud builds submit --tag gcr.io/edinburgh-finance-tracker/finance-tracker-frontend .
+```
+
+Run the deployment
+```
+gcloud run deploy finance-tracker-frontend \
+    --image gcr.io/edinburgh-finance-tracker/finance-tracker-frontend \
+    --platform managed \
+    --allow-unauthenticated
+```
+
+Then select asia-southeast1 when the prompt comes
