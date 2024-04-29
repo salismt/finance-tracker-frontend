@@ -1,6 +1,7 @@
 // nav.js
 import {user} from './auth.js';
 import config from './config.js';
+import app from './app.js';
 
 class Navbar {
   constructor() {
@@ -24,9 +25,6 @@ class Navbar {
                     <a href="${config.URL_PREFIX}transactions" class="nav-item">
                         <img src="https://storage.googleapis.com/finance-tracker-img-bucket/file.png" alt="Transactions" class="nav-icon"/>
                     </a>
-                    <a href="#" onclick="this.onLogout(); return false;" class="nav-item">
-                        <img src="https://storage.googleapis.com/finance-tracker-img-bucket/logout.png" alt="Logout" class="nav-icon"/>
-                    </a>
                     <a href="${config.URL_PREFIX}add-transaction" id="add-transaction-btn" class="nav-item">
                         <img src="https://storage.googleapis.com/finance-tracker-img-bucket/plus.png" alt="Transactions" class="nav-icon"/>
                     </a>
@@ -47,10 +45,6 @@ class Navbar {
 
             `;
     }
-  }
-
-  onLogout() {
-    this.setupNavbar();
   }
 }
 

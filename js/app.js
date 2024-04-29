@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
   page('/login', login);
   page('/signup', signup);
   page('/profile', profile);
-  // page('/logout', onLogout(navbar))
   page();
 });
 

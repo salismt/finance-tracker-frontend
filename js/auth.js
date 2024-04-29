@@ -38,10 +38,9 @@ export function onLoginFailure(error) {
   page.redirect(`${config.URL_PREFIX}login`);
 }
 
-export function onLogout(navbar) {
+export function onLogout() {
   axios.post(`${config.API_URL}api/logout`, {}, { headers: { 'Authorization': `Bearer ${user.token}` } })
     .finally(() => {
-      navbar.onLogout();
       user.logout(); // This should clear the user data and update isAuthenticated to false
       page.redirect(`${config.URL_PREFIX}login`);
     });
