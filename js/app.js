@@ -135,7 +135,6 @@ function profile() {
     const balance = document.getElementById('profile-balance');
     balance.textContent = balanceData.current_balance;
   })
-  document.getElementById('profile-balance').innerHTML = "79999";
 }
 
 function addTransaction() {
