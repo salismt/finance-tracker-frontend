@@ -54,6 +54,7 @@ git commit -m "commit"
 
 Then build the image
 ```
+npm run build
 gcloud builds submit --tag gcr.io/edinburgh-finance-tracker/finance-tracker-frontend .
 ```
 
