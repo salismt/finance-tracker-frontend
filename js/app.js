@@ -3,19 +3,19 @@ import {fetchBalance, fetchCategories, fetchTransactions} from './api.js';
 import { onLoginSuccess, onSignupSuccess, user, onLogout } from './auth.js';
 import Navbar from './nav.js';
 import { renderDashboard } from './dashboard.js';
-import { TransactionModal } from './modal.js';
+import { onAddTransaction } from "./transaction.js";
 import config from './config.js';
 
 document.addEventListener('DOMContentLoaded', function() {
   var base = document.createElement('base');
   base.href = config.URL_PREFIX;
   document.head.prepend(base);
-  const transactionModal = new TransactionModal(); // Instantiate the modal
-  const navbar = new Navbar(transactionModal);
+  const navbar = new Navbar();
 
   page('/', index);
   page('/categories', categories);
   page('/transactions', transactions);
+  page('/add-transaction', addTransaction)
   page('/login', login);
   page('/signup', signup);
   page('/profile', profile);
@@ -136,3 +136,66 @@ function profile() {
     balance.textContent = balanceData.current_balance;
   })
 }
+
+function addTransaction() {
+  if (!user.isAuthenticated) {
+    page.redirect(`${config.URL_PREFIX}login`); // Redirect to login if not authenticated
+    return;
+  }
+  const app = document.getElementById('app');
+  app.innerHTML = `
+  <div class="modal-like-container">
+  <div class="modal-content">
+    <h2>Input Transaction</h2>
+    <form id="transaction-form">
+      <div class="form-group">
+        <label for="transaction-name">Transaction Name</label>
+        <input type="text" id="transaction-name" name="transaction-name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select id="category" name="category">
+          <!-- Categories options will be populated dynamically -->
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="transaction-date">Date of Transaction</label>
+        <input type="date" id="transaction-date" name="transaction-date" required>
+      </div>
+
+      <div class="form-group">
+        <label for="amount">Amount</label>
+        <input type="number" id="amount" name="amount" step="0.01" required>
+      </div>
+
+      <div class="form-group">
+        <label for="type">Type</label>
+        <select id="type" name="type">
+          <option value="expense">Expense</option>
+          <option value="income">Income</option>
+        </select>
+      </div>
+
+      <button type="submit" onclick="">Submit</button>
+    </form>
+  </div>
+</div>
+`;
+
+  fetchCategories().then(categoryData => {
+    const categorySelect = document.getElementById('category');
+    categorySelect.innerHTML = '';  // Clear existing options first, if any
+
+    categoryData.categories.forEach(category => {
+      const option = document.createElement('option');
+      option.value = category.key; // Ensure your backend sends `id` or adjust as needed
+      option.textContent = category.key;
+      categorySelect.appendChild(option);
+    });
+  });
+  document.getElementById('transaction-form').addEventListener('submit', onAddTransaction)
+
+}
+

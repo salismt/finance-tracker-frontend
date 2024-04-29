@@ -2,8 +2,7 @@
 import {user} from './auth.js';
 
 class Navbar {
-  constructor(transactionModal) {
-    this.transactionModal = transactionModal;
+  constructor() {
     this.nav = document.getElementById('nav');
     this.setupNavbar();
     user.onAuthChange = this.setupNavbar.bind(this); // Ensure the right context is maintained
@@ -27,14 +26,13 @@ class Navbar {
                     <a href="#" onclick="this.onLogout(); return false;" class="nav-item">
                         <img src="../icons/logout.png" alt="Logout" class="nav-icon"/>
                     </a>
-                    <button id="add-transaction-btn" class="nav-item">
-                        <img src="../icons/plus.png" alt="Add Transaction" class="nav-icon"/>
-                    </button>
+                    <a href="/add-transaction" id="add-transaction-btn" class="nav-item">
+                        <img src="../icons/plus.png" alt="Transactions" class="nav-icon"/>
+                    </a>
                 </nav>
             `;
 
       // Attach event listeners to dynamic elements
-      document.getElementById('add-transaction-btn').addEventListener('click', () => this.transactionModal.open());
     } else {
       this.nav.innerHTML = `
                 <nav class="vertical-navbar">

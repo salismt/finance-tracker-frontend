@@ -11,7 +11,7 @@ const useLocalData = config.NODE_ENV === 'development';
 export function fetchCategories() {
   if (useLocalData) {
     // Using local data for categories
-    return Promise.resolve(categoryData().data.categories);
+    return Promise.resolve(categoryData());
   } else {
     return axios.get(`${config.API_URL}api/categories`, {
       headers: { 'Authorization': `Bearer ${user.token}` }
