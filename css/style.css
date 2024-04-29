@@ -245,6 +245,65 @@ textarea {
   }
 }
 
+/* Application styles below here */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  height: 100%;
+}
+
+.vertical-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 100%;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.nav-item {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 10px;
+  transition: background 0.3s;
+}
+
+.nav-item:hover {
+  background-color: #e9ecef;
+}
+
+.nav-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.visually-hidden {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+}
+
+.main-container {
+  margin-left: 80px;
+  padding: 1rem;
+}
+
+
 .dashboard {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -252,7 +311,7 @@ textarea {
 }
 
 .dashboard-item {
-  background: #fff;
+  background: #E0E0E0;
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -275,39 +334,26 @@ textarea {
   height: 200px; /* Set the height for your chart container */
 }
 
-/* Modal styles */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 2; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+.modal-like-container {
+  padding: 40px;
+  background-color: #fff;
+  width: 50%; /* Adjust width as necessary */
+  margin: 50px auto; /* Centers the form on the page */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd; /* Optional border */
 }
 
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
 }
 
-.close-button {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+.form-group {
+  margin-bottom: 20px;
 }
 
-.close-button:hover,
-.close-button:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+label {
+  display: block;
+  margin-bottom: 5px;
 }
 
 .profile-container {
@@ -324,8 +370,8 @@ textarea {
 }
 
 .profile-image {
-  width: 100px; /* Adjust as needed */
-  height: 100px; /* Adjust as needed */
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   margin-bottom: 10px;
 }
@@ -341,51 +387,17 @@ textarea {
 }
 
 .balance-info {
-  background-color: #f0f0f0;
+  background-color: #E0E0E0;
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: fit-content;
+  min-width: 250px;
 }
 
 .balance-amount {
   font-size: 20px;
   font-weight: bold;
-}
-
-.transactions-page {
-  padding: 20px;
-}
-
-.page-title {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.transaction-filters {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.transaction-search {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 100%;
-  max-width: 300px; /* or your preferred width */
-}
-
-.time-frame-select {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.transactions-list {
-  background-color: #f0f0f0;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  padding: 15px;
 }
 
 .transaction-item {
@@ -403,42 +415,45 @@ textarea {
   font-weight: bold;
 }
 
-/* Style for the vertical navbar */
-.vertical-navbar {
-  position: fixed; /* Fixed position to pin to the left */
-  top: 0;
-  left: 0;
-  width: 200px; /* Width of the navbar */
-  height: 100vh; /* Full height */
-  background-color: #ffffff; /* Adjust color as needed */
-  border-right: 1px solid #dddddd; /* Border for the right edge */
-  z-index: 1000; /* Ensure it's above other content */
+
+.no-display {
+  display: none;
 }
 
-/* Style for nav items */
-.nav-item {
+.transactions-page {
+  padding: 20px;
+}
+
+.page-title {
+  display: inline-block; /* or use flex */
+  font-size: 24px;
+  margin-bottom: 0; /* remove margin if you want the title closer to the search box */
+}
+
+.transaction-filters {
   display: flex;
-  align-items: center;
-  padding: 10px 15px;
-  color: #333333;
-  text-decoration: none;
-  border-bottom: 1px solid #dddddd; /* Border for each item */
+  justify-content: space-between;
+  align-items: center; /* this will vertically align your items */
+  margin-bottom: 20px;
 }
 
-.nav-item:hover {
-  background-color: #f4f4f4; /* Hover effect */
+.transaction-search {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 300px; /* adjust as needed */
 }
 
-/* Style for icons */
-.nav-icon {
-  width: 24px; /* Size of icons */
-  height: 24px;
-  margin-right: 10px; /* Space between icon and text */
+.time-frame-select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-/* Push main content to the right to make space for the navbar */
-.main-container {
-  margin-left: 200px; /* Same as the width of the navbar */
-  padding: 20px; /* Optional padding */
+.transactions-list {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 15px;
 }
-
